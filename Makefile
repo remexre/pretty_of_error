@@ -1,7 +1,5 @@
 OCAMLBUILD ?= ocamlbuild
 
-OCAMLBUILDFLAGS += -use-ocamlfind
-
 all: pretty_of_error
 clean:
 	$(OCAMLBUILD) -clean
@@ -11,4 +9,4 @@ pretty_of_error: pretty_of_error.native
 	cp -L $< $@
 
 %.native: %.ml
-	$(OCAMLBUILD) $(OCAMLBUILDFLAGS) $@
+	$(OCAMLBUILD) -use-ocamlfind $@

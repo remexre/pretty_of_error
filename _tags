@@ -1,2 +1,2 @@
-true: package(ocaml-compiler-libs.common,core,ppx_jane)
+true: package(ocaml-compiler-libs.common), package(core), package(ppx_jane)
 true: thread,debug

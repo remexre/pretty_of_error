@@ -11,6 +11,8 @@ os: linux
 install:
 - opam init -a
 - eval `opam config env`
+- opam switch 4.06.0
+- eval `opam config env`
 - opam install -y core ocamlfind ocaml-compiler-libs
 
 script:
