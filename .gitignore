@@ -1,0 +1,10 @@
+.*
+!.gitignore
+!.merlin
+!.travis.yml
+
+/_build
+/pretty_of_error
+
+*.byte
+*.native

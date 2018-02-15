@@ -1,0 +1,25 @@
+language: generic
+addons:
+  apt:
+    sources:
+    - avsm
+    packages:
+    - ocaml
+    - opam
+os: linux
+
+install:
+- opam init -a
+- eval `opam config env`
+- opam install -y core ocamlfind ocaml-compiler-libs
+
+script:
+- make
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: pretty_of_error
+  skip_cleanup: true
+  on:
+    tags: true
