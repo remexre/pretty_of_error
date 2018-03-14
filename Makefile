@@ -8,5 +8,5 @@ clean:
 pretty_of_error: pretty_of_error.native
 	cp -L $< $@
 
-%.native: %.ml
+pretty_of_error.native: pretty_of_error.ml message.ml
 	$(OCAMLBUILD) -use-ocamlfind $@

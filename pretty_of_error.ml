@@ -26,9 +26,8 @@ let typed_of_parse parsetree =
   in
   List.iter parsetree ~f:check
 
-let compile (filename: string) : error option =
+let compile (src: string) (filename: string) : error option =
   try
-    let src = In_channel.read_all filename in
     let parsetree = parse src filename in
     typed_of_parse parsetree;
     None
@@ -39,9 +38,18 @@ let compile (filename: string) : error option =
         Some({ desc = Typetexp(err); loc; })
     | ex -> raise ex
 
+let point_of_position (pos: Lexing.position) : int * int =
+  failwith "TODO"
+
 let main filename =
-  match compile filename with
-  | Some(err) -> print_endline "TODO"
+  let src = In_channel.read_all filename in
+  match compile src filename with
+  | Some(err) -> Message.fmt
+                   ~start_pos:(point_of_position (Location.loc_start (loc err)))
+                   ~end_pos:(point_of_position (Location.loc_end (loc err)))
+                   ~text:"asdf" ~path:(Some(filename))
+                   ~src:src
+                 |> print_endline
   | None -> ()
 
 let () =
